@@ -1,5 +1,7 @@
 # Ambiente de desenvolvimento com Docker e Docker Compose
 
+![alt text](https://github.com/Helmesvs/docker-compose-php-apache-mysql/blob/main/docker-image.webp?raw=true)
+
 O proposito deste repositório é demonstrar como utilizo o [Docker](https://docs.docker.com/get-started/overview/) e [Docker Compose](https://docs.docker.com/compose/) para montar meu ambiente de desenvolvimento.
 
 O ambiente possui 3 versões do banco de dados MySql (8, 5.7 e 5.6), Apache e possibilidade de troca entre 2 versões do PHP (7.3 e 7.4).
