@@ -1,0 +1,21 @@
+   FROM php:7.4-apache
+MAINTAINER XXX
+
+RUN apt-get update \
+   && apt-get install -y libzip-dev \
+   && apt-get install -y libfreetype6-dev libpng-dev libjpeg-dev \ 
+   && apt-get install -y zlib1g-dev \
+   && apt-get install -y g++ \
+   && apt-get install -y libicu-dev \
+   && apt-get install -y libxml2-dev \
+   && apt-get install -y git \
+   && apt-get install -y curl \
+   && apt-get install -y libldap2-dev \
+   && apt-get install -y imagemagick libmagickwand-dev --no-install-recommends \
+   && pecl install imagick \
+   && docker-php-ext-configure intl \
+   && docker-php-ext-configure gd --with-freetype --with-jpeg \
+   && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
+   && docker-php-ext-install zip mysqli intl xmlrpc zip mysqli gd opcache soap exif pdo mysqli pdo_mysql ldap \
+   && docker-php-ext-enable opcache exif imagick \
+   && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

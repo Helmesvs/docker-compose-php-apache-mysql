@@ -1,0 +1,57 @@
+version: '3'
+services:
+  moodle-db56:
+    image: mysql:5.6
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - '3356:3306'
+    volumes:
+      - ./database/mysql57:/var/lib/mysql
+    networks:
+      - moodle-net
+  moodle-db57:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - '3357:3306'
+    volumes:
+      - ./database/mysql56:/var/lib/mysql
+    networks:
+      - moodle-net
+  moodle-db8:
+    image: mysql:8
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - '3358:3306'
+    volumes:
+      - ./database/mysql8:/var/lib/mysql
+    networks:
+      - moodle-net
+  moodle-php:
+    build:
+        context: .
+        dockerfile: PHP74
+    restart: always
+    environment:
+      - COMPOSER_MEMORY_LIMIT=-1
+    ports:
+      - 80:80
+    volumes:
+      - /var/www/html/apache:/etc/apache2/sites-enabled
+      - /var/www/html:/var/www/html
+    networks:
+      - moodle-net
+    depends_on:
+      - moodle-db56
+      - moodle-db57
+      - moodle-db8
+networks:
+  moodle-net:
+    driver: bridge
+
