@@ -43,7 +43,10 @@ _E o que cada um deles significa?_
 
 Também utilizamos o arquivo hosts do sistema, dentro de  **/etc/hosts** este arquivo é responsável por apontar um determinado domínio para um ip especifico. Assim conseguimos criar domínios em nossa própria maquina.
 
-Para adicionar um novo site basta copiar o **mysite.dev.conf**, renomear de acordo com domínio pretendido e configurar o vhost.
+Para adicionar um novo site basta copiar o **mysite.dev.conf**, renomear de acordo com domínio pretendido e configurar o vhost. Depois disso adicione no arquivo /etc/hosts o redirecionamento como no exemplo abaixo:
+```
+127.0.1.1  mysite.local
+```
 
 Para iniciar os serviços basta entrar na pasta do docker **/var/www/html/docker** e executar o seguinte comando:
 ```
