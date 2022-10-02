@@ -40,6 +40,7 @@ _E o que cada um deles significa?_
 * **databases** armazena os arquivos de cada versão do banco de dados mysql, perceba que temos 3 versões disponíveis.
 * **docker-compose.yml** define os serviços e seus parâmetros para que todos os containers sejam capazes de conversar entre si. 
 * **PHP73** e **PHP74** são os dois Dockerfile disponíveis, assim é possível alternar entre versões de PHP.
+*  **mysite** é apenas um exemplo, no exemplo que dei os arquivo do projeto ficam nesta basta, mas ela poderia ter outro nome.
 
 Também utilizamos o arquivo hosts do sistema, dentro de  **/etc/hosts** este arquivo é responsável por apontar um determinado domínio para um ip especifico. Assim conseguimos criar domínios em nossa própria maquina.
 
