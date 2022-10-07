@@ -19,3 +19,6 @@ RUN apt-get update \
    && docker-php-ext-install zip mysqli intl xmlrpc zip mysqli gd opcache soap exif pdo mysqli pdo_mysql ldap \
    && docker-php-ext-enable opcache exif imagick \
    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+   
+   RUN cp /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/ && \
+    cp /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/
