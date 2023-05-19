@@ -43,6 +43,7 @@ services:
     ports:
       - 80:80
     volumes:
+      - /var/www/html/docker/sandbox/php/php.ini:/usr/local/etc/php/php.ini
       - /var/www/html/apache:/etc/apache2/sites-enabled
       - /var/www/html:/var/www/html
     networks:
