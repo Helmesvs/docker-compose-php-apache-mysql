@@ -1,0 +1,30 @@
+   FROM php:8.0-apache
+MAINTAINER XXX
+
+RUN apt update
+RUN apt install -y libzip-dev
+RUN apt install -y libfreetype6-dev libpng-dev libjpeg-dev 
+RUN apt install -y zlib1g-dev
+RUN apt install -y g++
+RUN apt install -y libicu-dev
+RUN apt install -y libxml2-dev
+RUN apt install -y git
+RUN apt install -y curl
+RUN apt install -y libldap2-dev
+RUN apt install -y imagemagick libmagickwand-dev --no-install-recommends
+
+RUN pecl install imagick
+RUN pecl install channel://pecl.php.net/xmlrpc-1.0.0RC3 xmlrpc
+
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/
+RUN docker-php-ext-install zip mysqli intl zip mysqli gd opcache soap exif pdo mysqli pdo_mysql ldap
+
+RUN docker-php-ext-enable opcache exif imagick
+RUN docker-php-ext-enable xmlrpc
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+   
+RUN cp /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/ && \
+    cp /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/
